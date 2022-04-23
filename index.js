@@ -1,57 +1,70 @@
-const p1 = {
-    score: 0,
-    button: document.querySelector('#p1Button'),
-    display: document.querySelector('#p1Display')
-}
+<!DOCTYPE html>
+<html lang="en">
 
-const p2 = {
-    score: 0,
-    button: document.querySelector('#p2Button'),
-    display: document.querySelector('#p2Display')
-}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Keeper</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
-const resetButton = document.querySelector('#reset');
-const winningScoreSelect = document.querySelector('#playTo');
+</head>
 
-let winningScore = 3;
-let isGameOver = false;
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-2by1">
+                            <img src="https://images.unsplash.com/photo-1534158914592-062992fbe900?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3784&q=80"
+                                alt="">
+                        </figure>
+                    </div>
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Ping Pong Scoe Keeper
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            <h1 class="title is-1">
+                                <span id="p1Display">0</span> <span>to</span> <span id="p2Display">0</span>
+                            </h1>
+                            <p class="subtitle">Use the Buttons below to keep score</p>
 
-function updateScores(player, opponent) {
-    if (!isGameOver) {
-        player.score += 1;
-        if (player.score === winningScore) {
-            isGameOver = true;
-            player.display.classList.add('has-text-success');
-            opponent.display.classList.add('has-text-danger');
-            player.button.disabled = true;
-            opponent.button.disabled = true;
-        }
-    }
-    player.display.innerText = player.score;
-}
+                            <label for="playTo" class="label is-large is-inline">Playing To </label>
+
+                            <div class="select is-rounded">
+                                <select name="" id="playTo">
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="8">8</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                </select>
+                            </div>
 
 
-p1.button.addEventListener('click', () => {
-    updateScores(p1, p2);
-})
 
-p2.button.addEventListener('click', () => {
-    updateScores(p2, p1);
-})
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <button id="p1Button" class="is-primary button card-footer-item is-medium">+1 Player
+                            One</button>
+                        <button id="p2Button" class="is-info button card-footer-item is-medium">+1 Player Two</button>
+                        <button id="reset" class="is-danger button card-footer-item is-medium">Reset</button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </section>
 
-winningScoreSelect.addEventListener('change', function () {
-    winningScore = parseInt(this.value);
-    reset();
-})
 
-resetButton.addEventListener('click', reset)
 
-function reset() {
-    isGameOver = false;
-    for (let p of [p1, p2]) {
-        p.score = 0;
-        p.display.innerText = 0;
-        p.display.classList.remove('has-text-success', 'has-text-danger');
-        p.button.disabled = false;
-    }
-}
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
